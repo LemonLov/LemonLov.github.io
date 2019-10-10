@@ -18,8 +18,8 @@
   
   <entry>
     <title>黄金矿工</title>
-    <link href="http://lemonlov.github.io/2019/10/09/%E9%BB%84%E9%87%91%E7%9F%BF%E5%B7%A5/"/>
-    <id>http://lemonlov.github.io/2019/10/09/黄金矿工/</id>
+    <link href="http://lemonlov.github.io/2019/10/09/path-with-maximum-gold/"/>
+    <id>http://lemonlov.github.io/2019/10/09/path-with-maximum-gold/</id>
     <published>2019-10-09T13:34:32.000Z</published>
     <updated>2019-10-10T02:01:55.688Z</updated>
     
@@ -42,11 +42,11 @@
       <category term="Leetcode" scheme="http://lemonlov.github.io/categories/Leetcode/"/>
     
     
-      <category term="python" scheme="http://lemonlov.github.io/tags/python/"/>
-    
       <category term="DFS" scheme="http://lemonlov.github.io/tags/DFS/"/>
     
       <category term="C++" scheme="http://lemonlov.github.io/tags/C/"/>
+    
+      <category term="python" scheme="http://lemonlov.github.io/tags/python/"/>
     
   </entry>
   

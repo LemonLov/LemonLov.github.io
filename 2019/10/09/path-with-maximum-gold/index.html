@@ -11,10 +11,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="&amp;emsp;&amp;emsp;你要开发一座金矿，地质勘测学家已经探明了这座金矿中的资源分布，并用大小为 m * n 的网格 grid 进行了标注。每个单元格中的整数就表示这一单元格中的黄金数量；如果该单元格是空的，那么就是 0。 &amp;emsp;&amp;emsp;为了使收益最大化，矿工需要按以下规则来开采黄金：  每当矿工进入一个单元，就会收集该单元格中的所有黄金。 矿工每次可以从当前位置向上下左右四个方向走。">
-<meta name="keywords" content="python,DFS,C++">
+<meta name="keywords" content="DFS,C++,python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="黄金矿工">
-<meta property="og:url" content="http://lemonlov.github.io/2019/10/09/黄金矿工/index.html">
+<meta property="og:url" content="http://lemonlov.github.io/2019/10/09/path-with-maximum-gold/index.html">
 <meta property="og:site_name" content="弱爆了的雪饼">
 <meta property="og:description" content="&amp;emsp;&amp;emsp;你要开发一座金矿，地质勘测学家已经探明了这座金矿中的资源分布，并用大小为 m * n 的网格 grid 进行了标注。每个单元格中的整数就表示这一单元格中的黄金数量；如果该单元格是空的，那么就是 0。 &amp;emsp;&amp;emsp;为了使收益最大化，矿工需要按以下规则来开采黄金：  每当矿工进入一个单元，就会收集该单元格中的所有黄金。 矿工每次可以从当前位置向上下左右四个方向走。">
 <meta property="og:locale" content="zh-CN">
@@ -188,7 +188,7 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-黄金矿工" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-path-with-maximum-gold" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -207,7 +207,7 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/10/09/黄金矿工/" class="archive-article-date">
+<a href="/2019/10/09/path-with-maximum-gold/" class="archive-article-date">
         <time datetime="2019-10-09T13:34:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-09</time>
 </a>
 
@@ -297,7 +297,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://lemonlov.github.io/2019/10/09/黄金矿工/" title="黄金矿工" target="_blank">http://lemonlov.github.io/2019/10/09/黄金矿工/</a>
+          <a href="http://lemonlov.github.io/2019/10/09/path-with-maximum-gold/" title="黄金矿工" target="_blank">http://lemonlov.github.io/2019/10/09/path-with-maximum-gold/</a>
         </li>
         <li>
           <strong>版权声明： </strong>
@@ -316,15 +316,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">DFS</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -391,7 +391,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://lemonlov.github.io/2019/10/09/黄金矿工/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://lemonlov.github.io/2019/10/09/path-with-maximum-gold/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -591,15 +591,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">DFS</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
             
             <div class="clearfix"></div>
