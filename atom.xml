@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://lemonlov.github.io/"/>
-  <updated>2019-10-10T02:01:55.688Z</updated>
+  <updated>2019-10-11T09:59:51.463Z</updated>
   <id>http://lemonlov.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使数组严格递增</title>
+    <link href="http://lemonlov.github.io/2019/10/11/make-array-strictly-increasing/"/>
+    <id>http://lemonlov.github.io/2019/10/11/make-array-strictly-increasing/</id>
+    <published>2019-10-11T09:50:16.000Z</published>
+    <updated>2019-10-11T09:59:51.463Z</updated>
+    
+    <content type="html"><![CDATA[<p>&emsp;&emsp;给你两个整数数组 arr1 和 arr2，返回使 arr1 严格递增所需要的最小「操作」数（可能为 0）。</p><p>&emsp;&emsp;每一步「操作」中，你可以分别从 arr1 和 arr2 中各选出一个索引，分别为 i 和 j，0 &lt;= i &lt; arr1.length 和 0 &lt;= j &lt; arr2.length，然后进行赋值运算 arr1[i] = arr2[j]。</p><p>&emsp;&emsp;如果无法让 arr1 严格递增，请返回 -1。</p><a id="more"></a><p><strong>示例 1:</strong></p><pre><code>输入：arr1 = [1,5,3,6,7], arr2 = [1,3,2,4]输出：1解释：用 2 来替换 5，之后 arr1 = [1, 2, 3, 6, 7]。</code></pre><p><strong>示例 2:</strong></p><pre><code>输入：arr1 = [1,5,3,6,7], arr2 = [4,3,1]输出：2解释：用 3 来替换 5，然后用 4 来替换 3，得到 arr1 = [1, 3, 4, 6, 7]。</code></pre><p><strong>示例 3:</strong></p><pre><code>输入：arr1 = [1,5,3,6,7], arr2 = [1,6,3,3]输出：-1解释：无法使 arr1 严格递增。</code></pre><p><strong>提示：</strong></p><ul><li>1 &lt;= arr1.length, arr2.length &lt;= 2000</li><li>0 &lt;= arr1[i], arr2[i] &lt;= 10^9</li></ul><p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/make-array-strictly-increasing" target="_blank" rel="noopener">https://leetcode-cn.com/problems/make-array-strictly-increasing</a></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">makeArrayIncreasing</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; arr2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = arr1.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(n+<span class="number">1</span>,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n+<span class="number">1</span>,INT_MAX));</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">        sort(arr2.begin(), arr2.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= j; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span> (arr1[j<span class="number">-1</span>] &gt; dp[i][j<span class="number">-1</span>])</span><br><span class="line">                    dp[i][j] = arr1[j<span class="number">-1</span>];</span><br><span class="line">                <span class="keyword">if</span> (i &gt; <span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">auto</span> it = upper_bound(arr2.begin(), arr2.end(), dp[i<span class="number">-1</span>][j<span class="number">-1</span>]);</span><br><span class="line">                    <span class="keyword">if</span> (it != arr2.end())</span><br><span class="line">                        dp[i][j] = min(dp[i][j], *it);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>( j == n &amp;&amp; dp[i][j] != INT_MAX)&#123;</span><br><span class="line">                    <span class="keyword">return</span> i;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><hr><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">makeArrayIncreasing</span><span class="params">(self, arr1: List[int], arr2: List[int])</span> -&gt; int:</span></span><br><span class="line">        n = len(arr1)</span><br><span class="line">        maxV = <span class="number">1000000001</span></span><br><span class="line">        dp = [[maxV <span class="keyword">for</span> i <span class="keyword">in</span> range(n+<span class="number">1</span>)] <span class="keyword">for</span> j <span class="keyword">in</span> range(n+<span class="number">1</span>)]</span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">        arr2.sort()</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>, n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, j+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> arr1[j<span class="number">-1</span>] &gt; dp[i][j<span class="number">-1</span>]:</span><br><span class="line">                    dp[i][j] = arr1[j<span class="number">-1</span>]</span><br><span class="line">                <span class="keyword">if</span> i &gt; <span class="number">0</span>:</span><br><span class="line">                    loc = bisect.bisect_right(arr2, dp[i<span class="number">-1</span>][j<span class="number">-1</span>])</span><br><span class="line">                    <span class="keyword">if</span> loc &lt; len(arr2):</span><br><span class="line">                        dp[i][j] = min(dp[i][j], arr2[loc])</span><br><span class="line">                <span class="keyword">if</span> j == n <span class="keyword">and</span> dp[i][j] != maxV:</span><br><span class="line">                    <span class="keyword">return</span> i</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&amp;emsp;&amp;emsp;给你两个整数数组 arr1 和 arr2，返回使 arr1 严格递增所需要的最小「操作」数（可能为 0）。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;每一步「操作」中，你可以分别从 arr1 和 arr2 中各选出一个索引，分别为 i 和 j，0 &amp;lt;= i &amp;lt; arr1.length 和 0 &amp;lt;= j &amp;lt; arr2.length，然后进行赋值运算 arr1[i] = arr2[j]。&lt;/p&gt;
+&lt;p&gt;&amp;emsp;&amp;emsp;如果无法让 arr1 严格递增，请返回 -1。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Leetcode" scheme="http://lemonlov.github.io/categories/Leetcode/"/>
+    
+    
+      <category term="动态规划" scheme="http://lemonlov.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    
+      <category term="C++" scheme="http://lemonlov.github.io/tags/C/"/>
+    
+      <category term="python" scheme="http://lemonlov.github.io/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>黄金矿工</title>
@@ -42,11 +71,11 @@
       <category term="Leetcode" scheme="http://lemonlov.github.io/categories/Leetcode/"/>
     
     
-      <category term="DFS" scheme="http://lemonlov.github.io/tags/DFS/"/>
-    
       <category term="C++" scheme="http://lemonlov.github.io/tags/C/"/>
     
       <category term="python" scheme="http://lemonlov.github.io/tags/python/"/>
+    
+      <category term="DFS" scheme="http://lemonlov.github.io/tags/DFS/"/>
     
   </entry>
   
